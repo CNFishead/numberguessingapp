@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import colors from "../constants/colors";
 
 export const styles = StyleSheet.create({
@@ -9,10 +9,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: Dimensions.get("window").width * 0.7,
+    height: Dimensions.get("window").width * 0.7,
     // set border radius to 50% of container width/height
-    borderRadius: 300 / 2,
+    borderRadius: (Dimensions.get("window").width * 0.7) / 2,
     borderWidth: 3,
     borderColor: colors.primary_darker2,
     overflow: "hidden",
