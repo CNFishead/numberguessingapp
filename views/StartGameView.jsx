@@ -6,7 +6,7 @@ import Title from "../components/title/Title.component";
 import Card from "../components/card/Card.component";
 import InstructionText from "../components/instructionText/InstructionText.component";
 
-const StartGameView = ({ onPickNumber }) => {
+const StartGameView = ({ onPickNumber, }) => {
   const [enteredValue, setEnteredValue] = useState("");
 
   const onFinish = () => {

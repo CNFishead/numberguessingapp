@@ -9,7 +9,7 @@ import Card from "../components/card/Card.component";
 import InstructionText from "../components/instructionText/InstructionText.component";
 import { Ionicons } from "@expo/vector-icons";
 
-const GameView = ({ userChoice, onGameOver, resetGame }) => {
+const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
   const initialGuess = generateRandomNumber(1, 100, userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [rounds, setRounds] = useState(1);
@@ -56,6 +56,7 @@ const GameView = ({ userChoice, onGameOver, resetGame }) => {
 
   useEffect(() => {
     if (Number(currentGuess) === Number(userChoice)) {
+      setNumberRounds(rounds);
       onGameOver(rounds);
     }
   }, [currentGuess, userChoice, onGameOver]);

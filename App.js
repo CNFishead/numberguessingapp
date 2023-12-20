@@ -14,6 +14,7 @@ SplashScreen.preventAutoHideAsync().catch((err) => console.log(err));
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [numberRounds, setNumberRounds] = useState(0); // [0, 99]
   const [gameOver, setGameOver] = useState(true);
 
   const [fontsLoaded] = useFonts({
@@ -40,6 +41,12 @@ export default function App() {
   const gameOverHandler = () => {
     setGameOver(true);
   };
+
+  const resetGameHandler = () => {
+    setNumberRounds(0);
+    setUserNumber(null);
+    setGameOver(true);
+  };
   return (
     <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <LinearGradient colors={[colors.primary_darker2, colors.accent, colors.secondary]} style={styles.container}>
@@ -50,20 +57,13 @@ export default function App() {
           imageStyle={styles.backgroundImage}
         >
           {gameOver && userNumber ? (
-            <GameOverView
-              resetGame={() => {
-                setUserNumber(null);
-                setGameOver(true);
-              }}
-            />
+            <GameOverView resetGame={resetGameHandler} numRounds={numberRounds} userChoice={userNumber} />
           ) : userNumber ? (
             <GameView
               userChoice={userNumber}
               onGameOver={gameOverHandler}
-              resetGame={() => {
-                setUserNumber(null);
-                setGameOver(true);
-              }}
+              resetGame={resetGameHandler}
+              setNumberRounds={setNumberRounds}
             />
           ) : (
             <StartGameView onPickNumber={startGameHandler} />
