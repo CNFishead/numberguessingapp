@@ -2,8 +2,8 @@
   "expo": {
     "name": "numberguessingapp",
     "slug": "numberguessingapp",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "1.0.4",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

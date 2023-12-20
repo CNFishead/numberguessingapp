@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, FlatList, ScrollView, Text, View } from "react-native";
+import { Alert, FlatList, ScrollView, Text, View, useWindowDimensions } from "react-native";
 import { styles } from "../styles/GameViewStyles";
 import Title from "../components/title/Title.component";
 import NumberContainer from "../components/numberContainer/NumberContainer";
@@ -61,9 +61,10 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
     }
   }, [currentGuess, userChoice, onGameOver]);
 
-  return (
-    <View style={styles.container}>
-      <Title>Oppenents Guess</Title>
+  const { width } = useWindowDimensions();
+
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText style={styles.text}>Round: {rounds}</InstructionText>
@@ -81,19 +82,56 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
           </View>
         </View>
       </Card>
-      <View style={styles.pastGuessesContainer}>
-        <Text style={styles.pastGuessesText}>Past Guesses</Text>
-        <View style={styles.pastGuesses}>
-          <FlatList
-            data={pastGuesses}
-            renderItem={(itemData) => {
-              return <GuessLogItem item={itemData.item} />;
-            }}
-          />
+    </>
+  );
+
+  if (width > 500) {
+    content = (
+      <>
+        <View
+          style={[
+            styles.buttonsContainer,
+            {
+              flexDirection: "row",
+              alignItems: "center",
+            },
+          ]}
+        >
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton style={styles.buttonContainer} onPress={() => nextGuessHandler("higher")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
-      <View style={{ justifyContent: "flex-end", alignContent: "flex-end", flex: 0.5 }}>
-        <PrimaryButton onPress={() => resetGame()}>Reset</PrimaryButton>
+      </>
+    );
+  }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <Title>Oppenents Guess</Title>
+        {content}
+        <View style={styles.pastGuessesContainer}>
+          <Text style={styles.pastGuessesText}>Past Guesses</Text>
+          <View style={styles.pastGuesses}>
+            <FlatList
+              data={pastGuesses}
+              renderItem={(itemData) => {
+                return <GuessLogItem item={itemData.item} />;
+              }}
+            />
+          </View>
+        </View>
+        {/* <View style={{ justifyContent: "flex-end", alignItems: "flex-end", flex: 1 }}>
+          <PrimaryButton onPress={() => resetGame()}>Reset</PrimaryButton>
+        </View> */}
       </View>
     </View>
   );

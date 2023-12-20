@@ -4,6 +4,8 @@ import colors from "../constants/colors";
 export const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+  },
+  container: {
     padding: 24,
     justifyContent: "center",
     alignItems: "center",

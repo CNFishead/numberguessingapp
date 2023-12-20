@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { Button, TextInput, View, Alert, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  View,
+  Alert,
+  useWindowDimensions,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import { styles } from "../styles/StartGameStyles";
 import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
 import Title from "../components/title/Title.component";
 import Card from "../components/card/Card.component";
 import InstructionText from "../components/instructionText/InstructionText.component";
 
-const StartGameView = ({ onPickNumber, }) => {
+const StartGameView = ({ onPickNumber }) => {
   const [enteredValue, setEnteredValue] = useState("");
+  const [shouldReRender, setShouldReRender] = useState(false);
 
   const onFinish = () => {
     // validate input
@@ -28,34 +37,49 @@ const StartGameView = ({ onPickNumber, }) => {
     }
   };
 
+useWindowDimensions();
+
   const onReset = () => {
     setEnteredValue("");
   };
   return (
-    <View style={styles.rootContainer}>
-      <Title>Guess My Number!</Title>
-      <Card>
-        <InstructionText>Enter A Number between 1 and 99</InstructionText>
-        <TextInput
-          style={styles.numberInput}
-          placeholderTextColor={"#ddb52f"}
-          maxLength={2}
-          onChange={(e) => setEnteredValue(e.nativeEvent.text)}
-          // will always be a string
-          keyboardType={"number-pad"}
-          autoCapitalize="none"
-          value={enteredValue}
-        />
-        <View style={styles.buttonsContainer}>
-          <View style={[styles.buttonContainer, styles.resetButton]}>
-            <PrimaryButton onPress={onReset}>Reset</PrimaryButton>
-          </View>
-          <View style={[styles.buttonContainer, styles.confirmButton]}>
-            <PrimaryButton onPress={onFinish}>Confirm</PrimaryButton>
-          </View>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView
+        behavior="position"
+        keyboardVerticalOffset={30}
+        style={[
+          styles.rootContainer,
+          {
+            marginTop: Dimensions.get("window").height * 0.1,
+          },
+        ]}
+      >
+        <View style={styles.rootContainer}>
+          <Title>Guess My Number!</Title>
+          <Card>
+            <InstructionText>Enter A Number between 1 and 99</InstructionText>
+            <TextInput
+              style={styles.numberInput}
+              placeholderTextColor={"#ddb52f"}
+              maxLength={2}
+              onChange={(e) => setEnteredValue(e.nativeEvent.text)}
+              // will always be a string
+              keyboardType={"number-pad"}
+              autoCapitalize="none"
+              value={enteredValue}
+            />
+            <View style={styles.buttonsContainer}>
+              <View style={[styles.buttonContainer, styles.resetButton]}>
+                <PrimaryButton onPress={onReset}>Reset</PrimaryButton>
+              </View>
+              <View style={[styles.buttonContainer, styles.confirmButton]}>
+                <PrimaryButton onPress={onFinish}>Confirm</PrimaryButton>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 

@@ -1,9 +1,23 @@
 import React from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View, useWindowDimensions } from "react-native";
 import colors from "../../constants/colors";
 
 const Card = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
+  useWindowDimensions();
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          marginTop: Dimensions.get("window").width > 380 ? 24 : 12,
+          marginHorizontal: 16,
+          maxWidth: Dimensions.get("window").width * 0.9,
+        },
+      ]}
+    >
+      {children}
+    </View>
+  );
 };
 
 export default Card;
@@ -29,5 +43,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     alignItems: "center",
+    maxWidth: Dimensions.get("window").width * 0.9,
   },
 });
