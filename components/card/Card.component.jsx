@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import colors from "../../constants/colors";
 
 const Card = ({ children }) => {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     padding: 16,
-    marginTop:10,
+    marginTop: Dimensions.get("window").width > 380 ? 24 : 12,
     marginHorizontal: 16,
     borderRadius: 10,
     backgroundColor: colors.primary_darker2,
