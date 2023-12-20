@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, FlatList, ScrollView, Text, View } from "react-native";
 import { styles } from "../styles/GameViewStyles";
 import Title from "../components/title/Title.component";
 import NumberContainer from "../components/numberContainer/NumberContainer";
@@ -8,6 +8,7 @@ import generateRandomNumber from "../utils/generateRandomNumber";
 import Card from "../components/card/Card.component";
 import InstructionText from "../components/instructionText/InstructionText.component";
 import { Ionicons } from "@expo/vector-icons";
+import GuessLogItem from "../components/guessLogItem/GuessLogItem.component";
 
 const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
   const initialGuess = generateRandomNumber(1, 100, userChoice);
@@ -26,7 +27,6 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
       setUpperBound(currentGuess);
       setCurrentGuess(generateRandomNumber(lowerBound, currentGuess - 1, currentGuess));
       setPastGuesses([
-        ...pastGuesses,
         {
           guess: currentGuess,
           direction: "lower",
@@ -34,14 +34,13 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
           upperBound: upperBound,
           round: rounds,
         },
+        ...pastGuesses,
       ]);
-
       setRounds(rounds + 1);
     } else {
       setLowerBound(currentGuess);
       setCurrentGuess(generateRandomNumber(currentGuess + 1, upperBound, currentGuess));
       setPastGuesses([
-        ...pastGuesses,
         {
           guess: currentGuess,
           direction: "higher",
@@ -49,6 +48,7 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
           upperBound: upperBound,
           round: rounds,
         },
+        ...pastGuesses,
       ]);
       setRounds(rounds + 1);
     }
@@ -81,7 +81,18 @@ const GameView = ({ userChoice, onGameOver, resetGame, setNumberRounds }) => {
           </View>
         </View>
       </Card>
-      <View style={{ justifyContent: "flex-end", alignContent: "flex-end", flex: 1 }}>
+      <View style={styles.pastGuessesContainer}>
+        <Text style={styles.pastGuessesText}>Past Guesses</Text>
+        <View style={styles.pastGuesses}>
+          <FlatList
+            data={pastGuesses}
+            renderItem={(itemData) => {
+              return <GuessLogItem item={itemData.item} />;
+            }}
+          />
+        </View>
+      </View>
+      <View style={{ justifyContent: "flex-end", alignContent: "flex-end", flex: 0.5 }}>
         <PrimaryButton onPress={() => resetGame()}>Reset</PrimaryButton>
       </View>
     </View>

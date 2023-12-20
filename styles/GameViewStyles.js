@@ -21,4 +21,14 @@ export const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
+  pastGuessesContainer: {
+    flex: 1,
+    width: "100%",
+  },
+  pastGuessesText: {
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+    marginVertical: 12,
+  },
 });
