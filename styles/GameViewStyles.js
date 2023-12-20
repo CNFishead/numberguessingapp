@@ -8,4 +8,9 @@ export const styles = StyleSheet.create({
   backgroundImage: {
     opacity: 0.15,
   },
+  text: {
+    color: "white",
+    fontSize: 24,
+    textAlign: "center",
+  },
 });

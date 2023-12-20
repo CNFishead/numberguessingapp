@@ -7,32 +7,7 @@ export const styles = StyleSheet.create({
     marginTop: 100,
     alignItems: "center",
   },
-  helperText: {
-    color: colors.secondary,
-    fontSize: 24,
-    marginBottom: 16,
-  },
-  container: {
-    // flex: 1,
-    padding: 16,
-    marginTop: 36,
-    marginHorizontal: 16,
-    borderRadius: 10,
-    backgroundColor: colors.primary_darker2,
-
-    // android box shadow
-    elevation: 10,
-
-    // ios box shadow
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    alignItems: "center",
-  },
+  
   numberInput: {
     height: 50,
     margin: 12,

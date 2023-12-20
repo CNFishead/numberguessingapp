@@ -5,6 +5,7 @@ import Title from "../components/title/Title.component";
 import NumberContainer from "../components/numberContainer/NumberContainer";
 import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
 import generateRandomNumber from "../utils/generateRandomNumber";
+import Card from "../components/card/Card.component";
 
 const GameView = ({ userChoice, onGameOver, resetGame }) => {
   const initialGuess = generateRandomNumber(1, 100, userChoice);
@@ -64,17 +65,17 @@ const GameView = ({ userChoice, onGameOver, resetGame }) => {
     <View style={styles.container}>
       <Title>Oppenents Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Round: {rounds}</Text>
+      <Card>
+        <Text style={styles.text}>Round: {rounds}</Text>
         <Text>Higher or Lower?</Text>
         <View>
           <PrimaryButton onPress={() => nextGuessHandler("higher")}>+</PrimaryButton>
           <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
         </View>
-      </View>
-      <View></View>
+      </Card>
+      <View>
 
-      <PrimaryButton onPress={() => resetGame()}>End Game</PrimaryButton>
+      <PrimaryButton onPress={() => resetGame()}>End Game</PrimaryButton></View>
     </View>
   );
 };
