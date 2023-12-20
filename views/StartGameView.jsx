@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, TextInput, View, Alert } from "react-native";
 import { styles } from "../styles/StartGameStyles";
 import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
+import Title from "../components/title/Title.component";
 
 const StartGameView = ({ onPickNumber }) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -29,23 +30,26 @@ const StartGameView = ({ onPickNumber }) => {
     setEnteredValue("");
   };
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.numberInput}
-        placeholderTextColor={"#ddb52f"}
-        maxLength={2}
-        onChange={(e) => setEnteredValue(e.nativeEvent.text)}
-        // will always be a string
-        keyboardType={"number-pad"}
-        autoCapitalize="none"
-        value={enteredValue}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={[styles.buttonContainer, styles.resetButton]}>
-          <PrimaryButton onPress={onReset}>Reset</PrimaryButton>
-        </View>
-        <View style={[styles.buttonContainer, styles.confirmButton]}>
-          <PrimaryButton onPress={onFinish}>Confirm</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number!</Title>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.numberInput}
+          placeholderTextColor={"#ddb52f"}
+          maxLength={2}
+          onChange={(e) => setEnteredValue(e.nativeEvent.text)}
+          // will always be a string
+          keyboardType={"number-pad"}
+          autoCapitalize="none"
+          value={enteredValue}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={[styles.buttonContainer, styles.resetButton]}>
+            <PrimaryButton onPress={onReset}>Reset</PrimaryButton>
+          </View>
+          <View style={[styles.buttonContainer, styles.confirmButton]}>
+            <PrimaryButton onPress={onFinish}>Confirm</PrimaryButton>
+          </View>
         </View>
       </View>
     </View>

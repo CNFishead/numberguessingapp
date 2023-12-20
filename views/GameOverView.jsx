@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Text } from "react-native";
+import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
 
-const GameOverView = () => {
+const GameOverView = ({ resetGame }) => {
   return (
-    <div>GameOverView</div>
-  )
-}
+    <Text>
+      <PrimaryButton onPress={() => resetGame()}>End Game</PrimaryButton>
+    </Text>
+  );
+};
 
-export default GameOverView
+export default GameOverView;

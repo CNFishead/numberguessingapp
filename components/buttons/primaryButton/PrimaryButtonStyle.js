@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
+import colors from "../../../constants/colors";
 
 export const styles = StyleSheet.create({
   innerContainer: {
-    backgroundColor: "#72063c",
+    backgroundColor: colors.primary,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 10,
   },
-  text:{
+  text: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
@@ -20,7 +21,6 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
   pressed: {
-    opacity: .75,
-    
-  }
+    opacity: 0.75,
+  },
 });

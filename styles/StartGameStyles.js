@@ -1,13 +1,19 @@
 import { StyleSheet } from "react-native";
+import colors from "../constants/colors";
 
 export const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: "center",
+  },
   container: {
     // flex: 1,
     padding: 16,
-    marginTop: 100,
+    marginTop: 36,
     marginHorizontal: 16,
     borderRadius: 10,
-    backgroundColor: "#3b021f",
+    backgroundColor: colors.primary_darker2,
 
     // android box shadow
     elevation: 10,
@@ -25,12 +31,12 @@ export const styles = StyleSheet.create({
   numberInput: {
     height: 50,
     margin: 12,
-    borderBottomColor: "#ddb52f",
+    borderBottomColor: colors.secondary,
     borderBottomWidth: 2,
     // padding: 10,
     fontSize: 32,
     marginVertical: 8,
-    color: "#ddb52f",
+    color: colors.secondary,
     width: 50,
     textAlign: "center",
   },
@@ -42,6 +48,5 @@ export const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
   },
-  resetButton:{
-  }
+  resetButton: {},
 });
