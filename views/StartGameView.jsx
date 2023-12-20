@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextInput, View, Alert } from "react-native";
+import { Button, TextInput, View, Alert, Text } from "react-native";
 import { styles } from "../styles/StartGameStyles";
 import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
 import Title from "../components/title/Title.component";
@@ -33,6 +33,7 @@ const StartGameView = ({ onPickNumber }) => {
     <View style={styles.rootContainer}>
       <Title>Guess My Number!</Title>
       <View style={styles.container}>
+        <Text style={styles.helperText}>Enter a Number</Text>
         <TextInput
           style={styles.numberInput}
           placeholderTextColor={"#ddb52f"}

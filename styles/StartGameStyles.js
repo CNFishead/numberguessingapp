@@ -7,6 +7,11 @@ export const styles = StyleSheet.create({
     marginTop: 100,
     alignItems: "center",
   },
+  helperText: {
+    color: colors.secondary,
+    fontSize: 24,
+    marginBottom: 16,
+  },
   container: {
     // flex: 1,
     padding: 16,
