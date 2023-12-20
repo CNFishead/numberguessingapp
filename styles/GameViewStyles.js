@@ -13,4 +13,12 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
   },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+  },
+  buttonContainer: {
+    flex: 1,
+  },
 });

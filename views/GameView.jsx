@@ -6,6 +6,8 @@ import NumberContainer from "../components/numberContainer/NumberContainer";
 import PrimaryButton from "../components/buttons/primaryButton/PrimaryButton";
 import generateRandomNumber from "../utils/generateRandomNumber";
 import Card from "../components/card/Card.component";
+import InstructionText from "../components/instructionText/InstructionText.component";
+import { Ionicons } from "@expo/vector-icons";
 
 const GameView = ({ userChoice, onGameOver, resetGame }) => {
   const initialGuess = generateRandomNumber(1, 100, userChoice);
@@ -53,9 +55,6 @@ const GameView = ({ userChoice, onGameOver, resetGame }) => {
   };
 
   useEffect(() => {
-    console.log(`currentGuess: ${currentGuess}, userChoice: ${userChoice}`);
-    console.log(`isGameOver: ${currentGuess === userChoice}`);
-    console.log(typeof currentGuess, typeof userChoice);
     if (Number(currentGuess) === Number(userChoice)) {
       onGameOver(rounds);
     }
@@ -66,16 +65,24 @@ const GameView = ({ userChoice, onGameOver, resetGame }) => {
       <Title>Oppenents Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <Text style={styles.text}>Round: {rounds}</Text>
-        <Text>Higher or Lower?</Text>
-        <View>
-          <PrimaryButton onPress={() => nextGuessHandler("higher")}>+</PrimaryButton>
-          <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
+        <InstructionText style={styles.text}>Round: {rounds}</InstructionText>
+        <InstructionText>Higher or Lower?</InstructionText>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton style={styles.buttonContainer} onPress={() => nextGuessHandler("higher")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
         </View>
       </Card>
-      <View>
-
-      <PrimaryButton onPress={() => resetGame()}>End Game</PrimaryButton></View>
+      <View style={{ justifyContent: "flex-end", alignContent: "flex-end", flex: 1 }}>
+        <PrimaryButton onPress={() => resetGame()}>Reset</PrimaryButton>
+      </View>
     </View>
   );
 };
