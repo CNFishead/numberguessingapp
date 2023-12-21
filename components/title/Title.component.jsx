@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Platform } from "react-native";
 import colors from "../../constants/colors";
 
 const Title = ({ children }) => {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     color: colors.secondary,
     textAlign: "center",
-    borderWidth: 2,
+    borderWidth: Platform.OS === "android" ? 2 : 0,
     borderColor: colors.secondary_darker,
     padding: 12,
     borderRadius: 12,
